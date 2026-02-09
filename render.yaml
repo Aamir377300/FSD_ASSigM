@@ -1,28 +1,14 @@
 services:
-  # Backend Service
   - type: web
     name: notes-backend
-    env: node
+    runtime: node
     rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 10000
       - key: MONGODB_URI
-        sync: false  # Set this in Render dashboard
+        sync: false
       - key: JWT_SECRET
-        generateValue: true  # Auto-generate secure secret
-
-  # Frontend Service (optional - better to use Vercel)
-  - type: web
-    name: notes-frontend
-    env: node
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    startCommand: npm start
-    envVars:
-      - key: NEXT_PUBLIC_API_URL
-        value: https://notes-backend.onrender.com/api
+        generateValue: true
